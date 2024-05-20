@@ -1,31 +1,31 @@
-import Image from "next/image";
 import Link from "next/link";
 
-
-export default function LeftSidebar({leftSidebarOpen}) {
+export default function LeftSidebar({leftSidebarOpen, headerHeight}) {
   return (
     <div className={`${leftSidebarOpen ? '' : 'hidden'} bg-[#f0f2f6] fixed left-0 top-0 bottom-0 w-[260px] text-[#a7a9ae] text-[15px]`}>      
-    <div className="bg-[#004fad] px-[16px] font-light text-[32px] text-[#fff] mb-[10px] h-[52px] flex items-center">
+    <div className="bg-[#FF5845] px-[16px] font-light text-[32px] text-[#fff] mb-[10px] flex items-center" style={{height: headerHeight}}>
       Todo
     </div>
       <ul className="mx-[10px]">
         <li>
-          <Link href="" title="Today" className="px-[16px] py-[10px] block text-[#1570ef] bg-[#1051ab26] font-semibold rounded">Today</Link>
+          <Link href="" title="Today" className="px-[16px] py-[10px] block rounded hover:bg-[#ff58451c] text-[#FF5845] font-semibold">
+            Today
+          </Link>
         </li>
         <li>
-          <Link href="" title="Important" className="px-[16px] py-[10px] block">Important</Link>
+          <Link href="" title="Important" className="px-[16px] py-[10px] block rounded hover:bg-[#ff58451c] ">Important</Link>
         </li>
         <li>
-          <Link href="" title="Planned" className="px-[16px] py-[10px] block">Planned</Link>
+          <Link href="" title="Planned" className="px-[16px] py-[10px] block rounded hover:bg-[#ff58451c] ">Planned</Link>
         </li>
         <li>
-          <Link href="" title="All" className="px-[16px] py-[10px] block">All</Link>
+          <Link href="" title="All" className="px-[16px] py-[10px] block rounded hover:bg-[#ff58451c] ">All</Link>
         </li>
         <li>
-          <Link href="" title="Pending" className="px-[16px] py-[10px] block">Pending</Link>
+          <Link href="" title="Pending" className="px-[16px] py-[10px] block rounded hover:bg-[#ff58451c] ">Pending</Link>
         </li>
         <li>
-          <Link href="" title="Compolete" className="px-[16px] py-[10px] block">Compolete</Link>
+          <Link href="" title="Compolete" className="px-[16px] py-[10px] block rounded hover:bg-[#ff58451c] ">Compolete</Link>
         </li>
       </ul>
     </div>
