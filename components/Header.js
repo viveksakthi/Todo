@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import Profile from "./Profile";
 
 
-export default function Header({ leftSidebarOpen, setLeftSidebarOpen, setHeaderHeight, headerHeight }) {
+export default function Header({ pageTabName, leftSidebarOpen, setLeftSidebarOpen, setHeaderHeight, headerHeight }) {
   
   const headerRef =  useRef(null);
   
@@ -34,12 +34,16 @@ export default function Header({ leftSidebarOpen, setLeftSidebarOpen, setHeaderH
   
   return (
     <header ref={headerRef}  className={`${leftSidebarOpen ? "ml-[260px]" : "ml-[0px]"} bg-[#FF5845] text-center px-[24px] py-[14px] flex gap-[16px] items-center justify-between fixed left-0 right-0 top-0`}>
-
-      <FontAwesomeIcon 
-        icon={faBars} 
-        className="w-[24px] h-[24px] cursor-pointer text-white" 
-        onClick={ () => setLeftSidebarOpen(!leftSidebarOpen) }
-      />
+      <div className='flex gap-[16px] items-center'>
+        <FontAwesomeIcon 
+          icon={faBars} 
+          className="w-[24px] h-[24px] cursor-pointer text-white" 
+          onClick={ () => setLeftSidebarOpen(!leftSidebarOpen) }
+        />
+        <h1 className="text-[20px] text-[#fff]">
+        {pageTabName}
+        </h1>
+      </div>
       
       <Profile headerHeight={headerHeight} />
     </header>

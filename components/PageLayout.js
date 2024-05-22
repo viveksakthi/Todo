@@ -11,7 +11,7 @@ export default function PageLayout({ children, pageTabName }) {
     
     return (
       <RootLayout pageTabName={pageTabName}>      
-          <Header leftSidebarOpen={leftSidebarOpen} setLeftSidebarOpen={setLeftSidebarOpen} headerHeight={headerHeight} setHeaderHeight={setHeaderHeight} />
+          <Header leftSidebarOpen={leftSidebarOpen} setLeftSidebarOpen={setLeftSidebarOpen} headerHeight={headerHeight} setHeaderHeight={setHeaderHeight} pageTabName={pageTabName} />
           <LeftSidebar leftSidebarOpen={leftSidebarOpen} headerHeight={headerHeight} />      
           <main className={`${leftSidebarOpen ? "pl-[284px]" : "pl-[24px]"} pr-[24px]`} style={{ paddingTop: headerHeight + 20}}>                
             { children }

@@ -8,7 +8,7 @@ import AddTask from "@/components/AddTask";
 import TableView from '@/components/TableView';
 import { useState } from 'react';
 
-export default function Home() {
+export default function Pending() {
   
   const [tabIndex, setTabIndex] = useState(1);
 

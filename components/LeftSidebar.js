@@ -8,24 +8,24 @@ export default function LeftSidebar({leftSidebarOpen, headerHeight}) {
     </div>
       <ul className="mx-[10px]">
         <li>
-          <Link href="" title="Today" className="px-[16px] py-[10px] block rounded hover:bg-[#ff58451c] text-[#FF5845] font-semibold">
+          <Link href="/today" title="Today" className="px-[16px] py-[10px] block rounded hover:bg-[#ff58451c] text-[#FF5845] font-semibold">
             Today
           </Link>
         </li>
         <li>
-          <Link href="" title="Important" className="px-[16px] py-[10px] block rounded hover:bg-[#ff58451c] ">Important</Link>
+          <Link href="/important" title="Important" className="px-[16px] py-[10px] block rounded hover:bg-[#ff58451c] ">Important</Link>
         </li>
         <li>
-          <Link href="" title="Planned" className="px-[16px] py-[10px] block rounded hover:bg-[#ff58451c] ">Planned</Link>
+          <Link href="/planned" title="Planned" className="px-[16px] py-[10px] block rounded hover:bg-[#ff58451c] ">Planned</Link>
         </li>
         <li>
-          <Link href="" title="All" className="px-[16px] py-[10px] block rounded hover:bg-[#ff58451c] ">All</Link>
+          <Link href="/tasks" title="Tasks" className="px-[16px] py-[10px] block rounded hover:bg-[#ff58451c] ">Tasks</Link>
         </li>
         <li>
-          <Link href="" title="Pending" className="px-[16px] py-[10px] block rounded hover:bg-[#ff58451c] ">Pending</Link>
+          <Link href="/pending" title="Pending" className="px-[16px] py-[10px] block rounded hover:bg-[#ff58451c] ">Pending</Link>
         </li>
         <li>
-          <Link href="" title="Compolete" className="px-[16px] py-[10px] block rounded hover:bg-[#ff58451c] ">Compolete</Link>
+          <Link href="" title="Compolete" className="px-[16px] py-[10px] block rounded hover:bg-[#ff58451c] ">Complete</Link>
         </li>
       </ul>
     </div>
