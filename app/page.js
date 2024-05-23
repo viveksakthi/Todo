@@ -1,16 +1,19 @@
 "use client"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClose } from '@fortawesome/free-solid-svg-icons';  
+import { useState } from 'react';
 import PageLayout from "@/components/PageLayout";
 import Titlebar from "@/components/Titlebar";
 import ListView from "@/components/ListView";
 import AddTask from "@/components/AddTask";
 import TableView from '@/components/TableView';
-import { useState } from 'react';
+import EditTask from '@/components/EditTask';
 
 export default function Home() {
   
   const [tabIndex, setTabIndex] = useState(1);
+  
+  const [istaskOpen, setTaskOpen] = useState(false);
 
   return (
     <PageLayout pageTabName="Today">
@@ -20,6 +23,7 @@ export default function Home() {
       <div className="flex justify-between items-end mb-[24px]">
         
         <AddTask />
+        <EditTask istaskOpen={istaskOpen} setTaskOpen={setTaskOpen} />
         
         <div className="flex gap-[12px]">
           <span className="flex gap-[8px] items-center">
@@ -40,7 +44,7 @@ export default function Home() {
         
       </div>
       
-      {tabIndex == 1 && <ListView />}
+      {tabIndex == 1 && <ListView setTaskOpen={setTaskOpen} />}
       
       {tabIndex == 2 && <TableView />}
       
