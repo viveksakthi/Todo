@@ -1,6 +1,6 @@
 "use client"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faArrowRight, faStar as faSolidStar, faCheck } from '@fortawesome/free-solid-svg-icons';   
+import { faPlus, faArrowRight, faCheck } from '@fortawesome/free-solid-svg-icons';   
 import { faStar as faRegularStar } from '@fortawesome/free-regular-svg-icons';   
 import { useState } from 'react';
 import Chip from '@mui/material/Chip';
@@ -8,6 +8,7 @@ import { TextField, Button, Box, FormControl, InputLabel, Select, MenuItem, Chec
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import cryptoRandomString from 'crypto-random-string';
   
 const categories = [
   'Red',
@@ -16,11 +17,12 @@ const categories = [
 ];
 const statuses = ['To do', 'In Progress', 'Completed'];
 
-export default  function AddTask() {
+export default  function AddTask({ userId }) {
   
   const [istaskOpen, setTaskOpen] = useState(false);
   
   const [formData, setFormData] = useState({
+    userid: userId,
     name: '',
     date: null,
     category: [],
@@ -56,48 +58,44 @@ export default  function AddTask() {
   }
   
   const addTask = async () => {
-    try {
-      
+    try{
+
       const response = await fetch('/api/addtask', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData),
-      });
-      
+        body: JSON.stringify(formData)
+      })
+
       const result = await response.json();
-      
-      if (response.ok) {
+      if(response.ok){
         alert(result.message);
-      } else {
+        console.log(result.message);
+      }else{
         alert('Failed to save task');
       }
-      
-    } catch (error) {
-      
-      console.error('Error saving task:', error);
-      alert('An error occurred while saving the task');
-      
+
     }
+    catch(error){
+      console.error('Error savings in your form', error);
+      alert('An error occurred while saving the task');
+    }
+
+
   }
   
-  
-  
-  
-  
-  
-  
-    
+      
     return(
       <>
         <button className="px-[16px] py-[10px] border border-[#FF5845] bg-[#FF5845] hover:bg-[#fff] text-[#fff] hover:text-[#FF5845] font-medium flex gap-[8px] items-center rounded group"
           onClick={()=> setTaskOpen(true)}
         >
-          <FontAwesomeIcon 
+          <span title='New'> <FontAwesomeIcon id={cryptoRandomString({length: 10})}
             icon={faPlus} 
             className="w-[16px] h-[16px] text-[#fff] group-hover:text-[#FF5845]" 
           />
+          </span>
           New Task
         </button>
         <div className={`${istaskOpen ? 'right-0 ' : 'right-[-100%]'} fixed top-0 bottom-0 shadow-lg bg-white w-[400px] px-[20px] pt-[45px] pt-[24px] overflow-y-auto transition-all`}>
@@ -106,19 +104,21 @@ export default  function AddTask() {
             onClick={()=> setTaskOpen(false)}
             title='Close Popup'
           >
-            <FontAwesomeIcon 
+            <span title='New'> <FontAwesomeIcon id={cryptoRandomString({length: 10})}
               icon={faArrowRight} 
               className="w-[16px] h-[16px] text-[#374151] hover:text-[#111]"               
             />
+            </span>
           </span>
           
           <h2 className='text-[16px] font-medium text-[#374151] mb-[20px] flex justify-between'>
             Create new task
-            <FontAwesomeIcon 
+            <span title='New'> <FontAwesomeIcon id={cryptoRandomString({length: 10})}
               icon={faRegularStar} 
               className="w-[18px] h-[18px] text-[#374151] hover:text-[#111] cursor-pointer" 
               title='Make task as Important'
             />
+            </span>
           </h2>
           
           <Box component="form" sx={{ display: 'flex', flexDirection: 'column', gap: 2, maxWidth: 400, margin: '0 auto' }}>      

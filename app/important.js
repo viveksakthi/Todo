@@ -7,6 +7,7 @@ import ListView from "@/components/ListView";
 import AddTask from "@/components/AddTask";
 import TableView from '@/components/TableView';
 import { useState } from 'react';
+import cryptoRandomString from 'crypto-random-string';
 
 export default function Important() {
   
@@ -23,17 +24,19 @@ export default function Important() {
         
         <div className="flex gap-[12px]">
           <span className="flex gap-[8px] items-center">
-            <FontAwesomeIcon 
+            <span title='New'> <FontAwesomeIcon id={cryptoRandomString({length: 10})}
               icon={faClose} 
               className="w-[12px] h-[12px]" 
             />
+            </span>
             Important
           </span>
           <span className="flex gap-[8px] items-center">
-            <FontAwesomeIcon 
+            <span title='New'> <FontAwesomeIcon id={cryptoRandomString({length: 10})}
               icon={faClose} 
               className="w-[12px] h-[12px]" 
             />
+            </span>
             Due date
           </span>
         </div>

@@ -1,7 +1,9 @@
+"use client"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faChevronDown, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
+import cryptoRandomString from 'crypto-random-string';
 
 
 export default function Profile({headerHeight}) {
@@ -48,10 +50,11 @@ export default function Profile({headerHeight}) {
               />
         </span>
         John duke
-        <FontAwesomeIcon 
+        <span title='New'> <FontAwesomeIcon id={cryptoRandomString({length: 10})}
             icon={faChevronDown} 
             className="w-[20px] h-[20px] text-[#eee]" 
           />
+          </span>
           <div ref={profileDropdownRef} className={`${profileDropdownOpen ? '' : 'hidden'} bg-white shadow absolute right-[-24px] w-[200px] p-[16px] text-[#374151]`} style={{top: headerHeight - 14}}>
             <ul>
                 <li>

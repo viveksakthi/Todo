@@ -1,7 +1,8 @@
-
+"use client"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircle, faStar as faSolidStar  } from '@fortawesome/free-solid-svg-icons';
 import { faFolder, faCalendar, faStar as faRegularStar } from '@fortawesome/free-regular-svg-icons';
+import cryptoRandomString from 'crypto-random-string';
 
 export default function TableView() {
 
@@ -26,10 +27,11 @@ export default function TableView() {
             <h5 className='text-[#374151] text-center'>asdf List</h5>            
         </div>
         <div className='w-[10%] text-center'>
-          <FontAwesomeIcon 
+          <span title='New'> <FontAwesomeIcon id={cryptoRandomString({length: 10})}
             icon={faRegularStar} 
             className="w-[18px] h-[18px] text-[#FF5845]" 
           />
+          </span>
         </div>
       </div>
       
@@ -41,10 +43,11 @@ export default function TableView() {
             <h5 className='text-[#374151] text-center'>asdf List</h5>            
         </div>
         <div className='w-[10%] text-center'>
-          <FontAwesomeIcon 
+          <span title='New'> <FontAwesomeIcon id={cryptoRandomString({length: 10})}
             icon={faSolidStar} 
             className="w-[18px] h-[18px] text-[#FF5845]" 
           />
+          </span>
         </div>
       </div>
       
@@ -56,10 +59,11 @@ export default function TableView() {
             <h5 className='text-[#374151] text-center'>asdf List</h5>            
         </div>
         <div className='w-[10%] text-center'>
-          <FontAwesomeIcon 
+          <span title='New'> <FontAwesomeIcon id={cryptoRandomString({length: 10})}
             icon={faSolidStar} 
             className="w-[18px] h-[18px] text-[#FF5845]" 
           />
+          </span>
         </div>
       </div>
     </div>

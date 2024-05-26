@@ -7,39 +7,98 @@
       "email": "Sincere@april.biz",
       "tasks": [
         {
-          "name": "asdf",
+          "name": "task 12",
           "date": "2024-05-30T18:30:00.000Z",
+          "category": [
+            "Yellow"
+          ],
+          "status": "To do",
+          "notes": "asdf",
+          "createdat": "Sunday 26 May, 2024 at 02:01:51 pm",
+          "updatedat": "Sunday 26 May, 2024 at 02:01:51 pm"
+        },
+        {
+          "name": "task 12",
+          "date": "2024-05-30T18:30:00.000Z",
+          "category": [
+            "Yellow"
+          ],
+          "status": "To do",
+          "notes": "asdf",
+          "createdat": "Sunday 26 May, 2024 at 02:49:44 pm",
+          "updatedat": "Sunday 26 May, 2024 at 02:49:44 pm"
+        },
+        {
+          "userid": 1,
+          "name": "task 12",
+          "date": "2024-05-30T18:30:00.000Z",
+          "category": [
+            "Yellow"
+          ],
+          "status": "To do",
+          "notes": "asdf",
+          "createdat": "Sunday 26 May, 2024 at 02:52:07 pm",
+          "updatedat": "Sunday 26 May, 2024 at 02:52:07 pm"
+        },
+        {
+          "userid": 1,
+          "name": "task 12",
+          "date": "2024-05-30T18:30:00.000Z",
+          "category": [
+            "Yellow"
+          ],
+          "status": "To do",
+          "notes": "asdf",
+          "createdat": "Sunday 26 May, 2024 at 02:52:13 pm",
+          "updatedat": "Sunday 26 May, 2024 at 02:52:13 pm"
+        },
+        {
+          "name": "task 12",
+          "date": "2024-05-29T18:30:00.000Z",
           "category": [
             "Yellow",
             "Red"
           ],
           "status": "To do",
-          "notes": "asdf",
-          "createdat": "Thursday, 23 May, 2024 at 10:54:44 pm",
-          "updatedat": "Thursday, 23 May, 2024 at 10:54:44 pm"
+          "notes": "dg hry",
+          "createdat": "Sunday 26 May, 2024 at 02:56:33 pm",
+          "updatedat": "Sunday 26 May, 2024 at 02:56:33 pm"
         },
         {
-          "name": "Task2",
-          "date": "2024-05-30T18:30:00.000Z",
+          "name": "task 12",
+          "date": "2024-05-29T18:30:00.000Z",
           "category": [
             "Yellow",
             "Red"
           ],
           "status": "To do",
-          "notes": "asdf",
-          "createdat": "Thursday, 23 May, 2024 at 10:56:04 pm",
-          "updatedat": "Thursday, 23 May, 2024 at 10:56:04 pm"
+          "notes": "dg hry",
+          "createdat": "Sunday 26 May, 2024 at 02:57:06 pm",
+          "updatedat": "Sunday 26 May, 2024 at 02:57:06 pm"
         },
         {
-          "name": "task3",
-          "date": "2024-06-12T18:30:00.000Z",
+          "name": "task 12",
+          "date": "2024-05-29T18:30:00.000Z",
           "category": [
-            "Blue"
+            "Yellow",
+            "Red"
           ],
           "status": "To do",
-          "notes": "",
-          "createdat": "Thursday, 23 May, 2024 at 10:58:58 pm",
-          "updatedat": "Thursday, 23 May, 2024 at 10:58:58 pm"
+          "notes": "dg hry",
+          "createdat": "Sunday 26 May, 2024 at 02:57:41 pm",
+          "updatedat": "Sunday 26 May, 2024 at 02:57:41 pm"
+        },
+        {
+          "name": "task 12",
+          "date": "2024-05-29T18:30:00.000Z",
+          "category": [
+            "Yellow",
+            "Red"
+          ],
+          "status": "To do",
+          "notes": "dg hry",
+          "createdat": "Sunday 26 May, 2024 at 02:58:10 pm",
+          "updatedat": "Sunday 26 May, 2024 at 02:58:10 pm"
         }
       ]
     },

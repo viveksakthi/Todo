@@ -1,7 +1,8 @@
-
+"use client"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircle, faStar as faSolidStar  } from '@fortawesome/free-solid-svg-icons';
 import { faFolder, faCalendar, faStar as faRegularStar } from '@fortawesome/free-regular-svg-icons';
+import cryptoRandomString from 'crypto-random-string';
 
 export default function ListView({ setTaskOpen }) {
 
@@ -40,10 +41,11 @@ export default function ListView({ setTaskOpen }) {
             </div>
         </div>
         <div className='mt-[11px]'>
-          <FontAwesomeIcon 
+          <span title='New'> <FontAwesomeIcon id={cryptoRandomString({length: 10})}
             icon={faRegularStar} 
             className="w-[18px] h-[18px] text-[#FF5845]" 
           />
+          </span>
         </div>
       </div>
       
@@ -79,10 +81,11 @@ export default function ListView({ setTaskOpen }) {
             </div>
         </div>
         <div className='mt-[11px]'>
-          <FontAwesomeIcon 
+          <span title='New'> <FontAwesomeIcon id={cryptoRandomString({length: 10})}
             icon={faSolidStar} 
             className="w-[18px] h-[18px] text-[#FF5845]" 
           />
+          </span>
         </div>
       </div>
       
@@ -118,10 +121,11 @@ export default function ListView({ setTaskOpen }) {
             </div>
         </div>
         <div className='mt-[11px]'>
-          <FontAwesomeIcon 
+          <span title='New'> <FontAwesomeIcon id={cryptoRandomString({length: 10})}
             icon={faSolidStar} 
             className="w-[18px] h-[18px] text-[#FF5845]" 
           />
+          </span>
         </div>
       </div>
     </div>

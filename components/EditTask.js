@@ -1,7 +1,9 @@
+"use client"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faArrowRight, faStar as faSolidStar } from '@fortawesome/free-solid-svg-icons';   
 import { faStar as faRegularStar } from '@fortawesome/free-regular-svg-icons';   
 import { useState } from 'react';
+import cryptoRandomString from 'crypto-random-string';
 
 export default function EditTask({ istaskOpen, setTaskOpen }) {
     
@@ -13,19 +15,21 @@ export default function EditTask({ istaskOpen, setTaskOpen }) {
             onClick={()=> setTaskOpen(false)}
             title='Close Popup'
           >
-            <FontAwesomeIcon 
+            <span title='New'> <FontAwesomeIcon id={cryptoRandomString({length: 10})}
               icon={faArrowRight} 
               className="w-[16px] h-[16px] text-[#374151] hover:text-[#111]"               
             />
+            </span>
           </span>
           
           <h2 className='text-[16px] font-medium text-[#374151] mb-[20px] flex justify-between'>
             Prepare List
-            <FontAwesomeIcon 
+            <span title='New'> <FontAwesomeIcon id={cryptoRandomString({length: 10})}
               icon={faRegularStar} 
               className="w-[18px] h-[18px] text-[#374151] hover:text-[#111] cursor-pointer" 
               title='Make task as Important'
             />
+            </span>
           </h2>
           <form name="taskForm" className='grid gap-[16px]'>  
             <div>
