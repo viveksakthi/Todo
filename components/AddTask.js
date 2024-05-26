@@ -1,42 +1,34 @@
+"use client"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faArrowRight, faStar as faSolidStar, faCheck } from '@fortawesome/free-solid-svg-icons';   
 import { faStar as faRegularStar } from '@fortawesome/free-regular-svg-icons';   
 import { useState } from 'react';
-import { useTheme } from '@mui/material/styles';
-// import Box from '@mui/material/Box';
-// import OutlinedInput from '@mui/material/OutlinedInput';
-// import InputLabel from '@mui/material/InputLabel';
-// import MenuItem from '@mui/material/MenuItem';
-// import FormControl from '@mui/material/FormControl';
-// import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
-
-
 import { TextField, Button, Box, FormControl, InputLabel, Select, MenuItem, Checkbox, ListItemText, OutlinedInput } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-
   
 const categories = [
   'Red',
   'Blue',
   'Yellow'
 ];
-const statuses = ['Not Started', 'In Progress', 'Completed'];
+const statuses = ['To do', 'In Progress', 'Completed'];
 
-
-export default function AddTask() {
+export default  function AddTask() {
   
   const [istaskOpen, setTaskOpen] = useState(false);
   
   const [formData, setFormData] = useState({
-    taskName: '',
-    taskDate: null,
+    name: '',
+    date: null,
     category: [],
     status: '',
     notes: '',
   })
+  
+  
   
   const handleChange = (event) =>{
     if(event.target){
@@ -50,7 +42,7 @@ export default function AddTask() {
       setFormData(prevState => {
         return {
           ...prevState,
-          taskDate : event
+          date : event,
         }
       });
     }
@@ -58,10 +50,39 @@ export default function AddTask() {
   }
   
   const handleSubmit = (event) =>{
-    event.preventDefault();
-    console.log(formData)
+    event.preventDefault();    
+    addTask();
     
   }
+  
+  const addTask = async () => {
+    try {
+      
+      const response = await fetch('/api/addtask', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok) {
+        alert(result.message);
+      } else {
+        alert('Failed to save task');
+      }
+      
+    } catch (error) {
+      
+      console.error('Error saving task:', error);
+      alert('An error occurred while saving the task');
+      
+    }
+  }
+  
+  
   
   
   
@@ -104,8 +125,8 @@ export default function AddTask() {
             
               <TextField
                 label="Task Name"
-                name="taskName"
-                value={formData.taskName}
+                name="name"
+                value={formData.name}
                 onChange={handleChange}
                 variant="outlined"
                 fullWidth
@@ -116,8 +137,8 @@ export default function AddTask() {
                 <DatePicker 
                   label="Choose Date" 
                   variant="outlined" 
-                  name="taskDate" 
-                  value={formData.taskDate} 
+                  name="date" 
+                  value={formData.date} 
                   onChange={handleChange}
                 />
               </LocalizationProvider>

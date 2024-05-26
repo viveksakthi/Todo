@@ -1,0 +1,28 @@
+{
+    "data": [
+        {
+          "id": 1,
+          "name": "Leanne Graham",
+          "username": "Bret",
+          "email": "Sincere@april.biz",
+          "tasks": [
+            {
+                "name": "",
+                "date": "",
+                "category": ["Red"],
+                "status": ["Todo"],
+                "notes": "",
+                "createdat": "",
+                "updatedat": ""
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Ervin Howell",
+          "username": "Antonette",
+          "email": "Shanna@melissa.tv",
+          "tasks": []      
+        }
+    ]
+}
