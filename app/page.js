@@ -47,7 +47,7 @@ export default function Home() {
         
       </div>
       
-      {tabIndex == 1 && <ListView setTaskOpen={setTaskOpen} />}
+      {tabIndex == 1 && <ListView userId={1} setTaskOpen={setTaskOpen} />}
       
       {tabIndex == 2 && <TableView />}
       
