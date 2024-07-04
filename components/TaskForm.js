@@ -2,13 +2,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faArrowRight, faCheck } from '@fortawesome/free-solid-svg-icons';   
 import { faStar as faRegularStar } from '@fortawesome/free-regular-svg-icons';   
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Chip from '@mui/material/Chip';
 import { TextField, Button, Box, FormControl, InputLabel, Select, MenuItem, Checkbox, ListItemText, OutlinedInput } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import cryptoRandomString from 'crypto-random-string';
+import dayjs from 'dayjs';
   
 const categories = [
   'Red',
@@ -17,14 +18,21 @@ const categories = [
 ];
 const statuses = ['To do', 'In Progress', 'Completed'];
 
-export default  function TaskForm({ initialData }) {
+export default  function TaskForm({ initialData, setLoading, setAddTaskOpen }) {
   
-  const [formData, setFormData] = useState({
+  
+  const emptyFormData =  useMemo(()=>{
+    return {
     name: '',
     date: null,
     category: [],
     status: '',
-    notes: '',
+    notes: ''
+    }
+  },[])
+  
+  const [formData, setFormData] = useState({   
+    ...emptyFormData
   })
     
   useEffect(()=>{
@@ -33,19 +41,19 @@ export default  function TaskForm({ initialData }) {
             userid: initialData.userId,
             taskid: initialData.taskId,
             name: initialData.name,
-            date: initialData.date,
+            date: initialData.date != null ? dayjs(initialData.date) : null,     
             category: initialData.category,
             status: initialData.status,
             notes: initialData.notes
         })
     }
-    setFormData((prevState) => {
+    setFormData(() => {
         return { 
-            ...prevState,
-            userid: initialData.userId
+          ...emptyFormData,
+          userid: initialData.userId
         }
     })
-  }, [initialData])
+  }, [emptyFormData, initialData])
   
   
   
@@ -55,25 +63,24 @@ export default  function TaskForm({ initialData }) {
         return {
           ...prevState,
           [event.target.name] : event.target.value,
-          date : event
         }
       });
     }
-    /*else if(event.$isDayjsObject){
+    else if(event.$isDayjsObject){
       setFormData(prevState => {
         return {
           ...prevState,
           date : event,
         }
       });
-    }*/
+    }
     
   }
   
   const handleSubmit = (event) =>{
     event.preventDefault();
     if(initialData.taskId){
-        
+        updateTask();
     }
     else{
         addTask(); 
@@ -85,7 +92,7 @@ export default  function TaskForm({ initialData }) {
   const addTask = async () => {
     try{
 
-      const response = await fetch('/api/addtask', {
+      const response = await fetch(`/api/user/${formData.userid}/addtask`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -94,9 +101,11 @@ export default  function TaskForm({ initialData }) {
       })
 
       const result = await response.json();
-      if(response.ok){
+      if(response.ok){        
+        //console.log(result.message);
+        setAddTaskOpen(false);
+        setLoading(true);
         alert(result.message);
-        console.log(result.message);
       }else{
         alert('Failed to save task');
       }
@@ -105,6 +114,33 @@ export default  function TaskForm({ initialData }) {
     catch(error){
       console.error('Error savings in your form', error);
       alert('An error occurred while saving the task');
+    }
+  }
+  
+  const updateTask = async () => {
+    try{
+
+      const response = await fetch(`/api/user/${initialData.userId}/task/${initialData.taskId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+
+      const result = await response.json();
+      if(response.ok){        
+        console.log(result.message);
+        setLoading(true);
+        alert(result.message);
+      }else{
+        alert('Failed to update task');
+      }
+
+    }
+    catch(error){
+      console.error('Error updating in your form', error);
+      alert('An error occurred while updating the task');
     }
   }
   

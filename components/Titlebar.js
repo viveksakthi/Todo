@@ -2,11 +2,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRightArrowLeft, faLayerGroup, faList, faTableCellsLarge, faFilter } from '@fortawesome/free-solid-svg-icons';
 import cryptoRandomString from 'crypto-random-string';
+import TaskManipulation from './TaskManipulation';
 
-export default function Titlebar({ tabIndex, setTabIndex }) {
+export default function Titlebar({ userId, tabIndex, setTabIndex, taskSort, setLoading }) {
 
   return (    
-    <div className="flex justify-between gap-[16px] items-center mb-[24px]">
+    <div className="flex justify-between gap-[16px] items-center mb-[20px]">
         
         
         
@@ -35,32 +36,7 @@ export default function Titlebar({ tabIndex, setTabIndex }) {
           </button>
         </div>
         
-        <div className="flex justify-between gap-[24px]">
-          <button className="text-[#374151] hover:text-[#FF5845] flex gap-[8px]">
-            <span title='New'> <FontAwesomeIcon id={cryptoRandomString({length: 10})}
-              icon={faArrowRightArrowLeft} 
-              className="w-[20px] h-[20px] rotate-[90deg] text-[#FF5845]" 
-            />     
-            </span>       
-            Sort
-          </button>
-          <button className="text-[#374151] hover:text-[#FF5845] flex gap-[8px]">
-            <span title='New'> <FontAwesomeIcon id={cryptoRandomString({length: 10})}
-              icon={faFilter} 
-              className="w-[20px] h-[20px] text-[#FF5845]" 
-            />
-            </span>
-            Filter
-          </button>
-          <button className="text-[#374151] hover:text-[#FF5845] flex gap-[8px]">
-            <span title='New'> <FontAwesomeIcon id={cryptoRandomString({length: 10})}
-              icon={faLayerGroup} 
-              className="w-[20px] h-[20px] text-[#FF5845]" 
-            />
-            </span>
-            Group
-          </button>          
-        </div>
+        <TaskManipulation userId={userId} taskSort={taskSort} setLoading={setLoading} />
         
     </div>    
   );

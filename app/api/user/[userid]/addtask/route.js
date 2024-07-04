@@ -43,7 +43,7 @@ export async function POST(req) {
         jsonData.data.map(item =>{          
           if(item.id == taskData.userid){
             delete taskData.userid
-            taskData.taskId = item.tasks.length + 1;
+            taskData.taskId = item.tasks[item.tasks.length-1].taskId + 1;
             userName = item.name;            
             item.tasks.push(taskData);
           }
