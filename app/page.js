@@ -81,11 +81,11 @@ export default function Home() {
           // sort by due date
           if(option.order == 'ascending'){
             sortedTasks[0].tasks.sort((a, b) => {                          
-              return new Date(a.date) - new Date(b.date)
+              return parseDateString(a.date) - parseDateString(b.date)
             }); 
           }else if(option.order == 'descending'){
             sortedTasks[0].tasks.sort((a, b) => {                          
-              return new Date(b.date) - new Date(a.date)
+              return parseDateString(b.date) - parseDateString(a.date)
             }); 
           }         
           break;

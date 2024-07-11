@@ -272,7 +272,7 @@
         },
         {
           "name": "Task 14",
-          "date": null,
+          "date": "Thursday, July 18, 2024 at 12:00:00 AM",
           "category": [
             "Red",
             "Yellow",
@@ -281,14 +281,14 @@
           "status": "In Progress",
           "notes": "sda asdfasdf",
           "createdat": "Wednesday, 10 July, 2024 at 06:46:27 pm",
-          "updatedat": "Wednesday, 10 July, 2024 at 06:46:51 pm",
+          "updatedat": "Thursday 11 July, 2024 at 09:23:22 pm",
           "taskId": 20,
           "userid": 1,
           "taskid": 20
         }
       ],
       "sort": {
-        "option": "alphabet",
+        "option": "created date",
         "order": "ascending"
       },
       "category": ""

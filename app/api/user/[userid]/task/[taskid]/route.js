@@ -52,7 +52,7 @@ export async function GET(req, {params}){
         const userData = jsonData.data.filter(item => item.id == userid);
         const taskData = userData[0].tasks.filter(item => item.taskId == taskid);    
         
-        if(taskData.date){            
+        if(taskData[0].date){            
             taskData[0].date = humanReadableToISO(taskData[0].date);
         }
         
