@@ -4,7 +4,7 @@ import { faArrowRightArrowLeft, faLayerGroup, faList, faTableCellsLarge, faFilte
 import cryptoRandomString from 'crypto-random-string';
 import TaskManipulation from './TaskManipulation';
 
-export default function Titlebar({ userId, tabIndex, setTabIndex, taskSort, setLoading }) {
+export default function Titlebar({ userId, tabIndex, setTabIndex, setTaskList, taskSort, setSortOption, setShouldSort, shouldSort, postSortOption, setLoading }) {
 
   return (    
     <div className="flex justify-between gap-[16px] items-center mb-[20px]">
@@ -36,7 +36,7 @@ export default function Titlebar({ userId, tabIndex, setTabIndex, taskSort, setL
           </button>
         </div>
         
-        <TaskManipulation userId={userId} taskSort={taskSort} setLoading={setLoading} />
+        <TaskManipulation userId={userId} setTaskList={setTaskList} taskSort={taskSort} setSortOption={setSortOption} setShouldSort={setShouldSort} shouldSort={shouldSort} postSortOption={postSortOption} setLoading={setLoading} />
         
     </div>    
   );

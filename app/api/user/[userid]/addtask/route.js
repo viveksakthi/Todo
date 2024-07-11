@@ -17,10 +17,25 @@ const getCurrentDateTimeIST = () => {
   return date.toLocaleString('en-IN', options);
 }
 
+const isoToHumanReadable = (isoString) => {
+  const date = new Date(isoString);
+  const options = {
+    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+    hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true
+  };
+  return date.toLocaleString('en-US', options).replace(',', ',').replace(' at', ' at');
+};
+
+
+
 export async function POST(req) {
   try {
     const taskData = await req.json();
-
+        
+    if(taskData.date){
+      taskData.date = isoToHumanReadable(taskData.date)
+    }
+    
     taskData.createdat = getCurrentDateTimeIST()
     taskData.updatedat = getCurrentDateTimeIST()
     

@@ -15,7 +15,28 @@ const getCurrentDateTimeIST = () => {
       second: '2-digit'
     };
     return date.toLocaleString('en-IN', options);
-  }
+}
+  
+const isoToHumanReadable = (isoString) => {
+    const date = new Date(isoString);
+    const options = {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+      hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true
+    };
+    return date.toLocaleString('en-US', options).replace(',', ',').replace(' at', ' at');
+};
+
+const humanReadableToISO = (dateString) => {
+    // Remove the day of the week for easier parsing
+    const dateStringWithoutDay = dateString.replace(/^[a-zA-Z]+, /, '');
+    // Replace 'at' with ' ' for easier parsing
+    const dateTimeString = dateStringWithoutDay.replace(' at ', ' ');
+    const date = new Date(dateTimeString);
+  
+    // Convert to ISO string
+    return date.toISOString();
+};    
+  
 
 export async function GET(req, {params}){
     
@@ -29,7 +50,11 @@ export async function GET(req, {params}){
         const fileData = fs.readFileSync(filePath, 'utf-8');
         const jsonData = JSON.parse(fileData);
         const userData = jsonData.data.filter(item => item.id == userid);
-        const taskData = userData[0].tasks.filter(item => item.taskId == taskid);
+        const taskData = userData[0].tasks.filter(item => item.taskId == taskid);    
+        
+        if(taskData.date){            
+            taskData[0].date = humanReadableToISO(taskData[0].date);
+        }
         
         return new Response( JSON.stringify({message: 'Your task data fetched successfully', taskdata: taskData[0]}), {
             status: 200, 
@@ -56,8 +81,14 @@ export async function PUT(req, {params}){
     try{
         
         const taskData = await req.json();
+        
+        if(taskData.date){
+            taskData.date = isoToHumanReadable(taskData.date)
+        }
+        
         taskData.updatedat = getCurrentDateTimeIST()
         console.log(taskData);
+        
         const dataDir = path.join(process.cwd(), 'data');    
         const filePath = path.join(dataDir, 'data.json');
         

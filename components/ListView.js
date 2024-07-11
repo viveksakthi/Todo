@@ -63,12 +63,12 @@ export default function ListView({ setEditTaskOpen, setAddTaskOpen, setTaskId, g
     
     const renderCategoryItem = (item, index) =>{
       
-      return <span key={index} className='flex items-center gap-[8px]' style={{color: item}}>
+      return <span key={index} className='flex items-center gap-[8px]' style={{color: item=="Yellow" ? '#ffbc00': item}}>
         <FontAwesomeIcon 
           icon={faFolder} 
           className="w-[14px] h-[14px]" 
         />
-          {item} category
+          {item} category 
       </span>
     }
   

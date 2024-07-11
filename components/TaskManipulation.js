@@ -5,18 +5,22 @@ import cryptoRandomString from 'crypto-random-string';
 import { Button, Menu, MenuItem } from '@mui/material';
 import { useState } from 'react';
 
-export default function TaskManipulation({userId, taskSort, setLoading}) {
+export default function TaskManipulation({setSortOption, setShouldSort, shouldSort, postSortOption, setLoading}) {
     
     const [anchorElSort, setAnchorElSort] = useState(null);
     const openSort = Boolean(anchorElSort);
     const handleClickSort = (event) => {
       setAnchorElSort(event.currentTarget);
     };
-    const handleCloseSort = (option) => {
-      setAnchorElSort(null);
+    const handleCloseSort = () => {
+      setAnchorElSort(null);      
+    };
+    const handleSort = (option) => {
+      handleCloseSort();
       setLoading(true);
-      taskSort(option);
-      postSortOption(option,'assending');
+      setSortOption(option)
+      setShouldSort(!shouldSort);
+      postSortOption(option);
       
     };
       
@@ -29,31 +33,7 @@ export default function TaskManipulation({userId, taskSort, setLoading}) {
       setAnchorElGroup(null);
     };
     
-    // Save sort option to db
-    const postSortOption = async (option,order) =>{
-      try{
-        const response = await fetch(`/api/user/${userId}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            option: option,
-            order: order
-          })          
-        });
-        const result = await response.json();
-        if(response.ok){
-          // setLoading(true);
-          console.log(result.message);
-        }else{
-          console.log('Failed to save the sort data')
-        }
-      }
-      catch(error){
-        console.error('Error while saving the sort data', error);
-      }
-    }
+    
 
   return (    
     <div className="flex justify-between gap-[24px]">
@@ -82,10 +62,22 @@ export default function TaskManipulation({userId, taskSort, setLoading}) {
             }}
             
           >
-            <MenuItem onClick={()=>handleCloseSort('alphabet')}>Alphabet</MenuItem>
-            <MenuItem onClick={handleCloseSort}>Due date</MenuItem>
-            <MenuItem onClick={handleCloseSort}>Important</MenuItem>
-            <MenuItem onClick={handleCloseSort}>Create date</MenuItem>
+            <MenuItem onClick={()=>handleSort({
+              option: 'alphabet',
+              order: 'ascending'
+            })}>Alphabet</MenuItem>
+            <MenuItem onClick={()=>handleSort({
+              option: 'due date',
+              order: 'ascending'
+            })}>Due date</MenuItem>
+            <MenuItem onClick={()=>handleSort({
+              option: 'important',
+              order: 'ascending'
+            })}>Important</MenuItem>
+            <MenuItem onClick={()=>handleSort({
+              option: 'created date',
+              order: 'ascending'
+            })}>Created date</MenuItem>
           </Menu>
       </div>
       
